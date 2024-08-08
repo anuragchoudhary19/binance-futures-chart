@@ -13,9 +13,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-let PORT = process.env.PORT;
+let PORT = process.env.PORT || 3001;
 let server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+app.get("/health", (req, res) => {
+  return res.send("ok");
 });
 const API_KEY = process.env.API_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
